@@ -131,3 +131,24 @@ li.groupChildEle {
 .custom-close {
   display: flex;
 }
+.label-dot-child{
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+  z-index: 999;
+  top: 33%;
+  left: 3%;
+  margin: auto;
+}
+
+.list-item-parent{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.list-child{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}

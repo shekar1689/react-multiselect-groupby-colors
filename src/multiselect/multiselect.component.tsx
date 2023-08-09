@@ -204,7 +204,6 @@ export class Multiselect extends React.Component<IMultiselectProps, any> {
       r[key].push(a);
       return r;
     }, Object.create({}));
-
     this.setState({ groupedObject });
   }
 
@@ -393,7 +392,7 @@ export class Multiselect extends React.Component<IMultiselectProps, any> {
     return Object.keys(groupedObject).map(obj => {
 			return (
 				<React.Fragment key={obj}>
-					<li className="groupHeading" style={style['groupHeading']}>{obj}</li>
+					<li className="groupHeading" style={style['groupHeading']}>{obj}  </li>
 					{groupedObject[obj].map((option, i) => {
             const isSelected = this.isSelectedValue(option);
             return (
@@ -403,15 +402,22 @@ export class Multiselect extends React.Component<IMultiselectProps, any> {
                 className={`groupChildEle option ${isSelected ? 'selected' : ''} ${this.fadeOutSelection(option) ? 'disableSelection' : ''} ${this.isDisablePreSelectedValues(option) ? 'disableSelection' : ''}`}
                 onClick={() => this.onSelectItem(option)}
               >
+                <div className="list-item-parent">
+                  <div className="list-child">
+                    <div style={{background:option?.color}} className="label-dot-child"></div>
+                    <div>{this.props.optionValueDecorator(isObject ? option[displayValue] : (option || '').toString(), option)}</div>
+                  </div>
                 {showCheckbox && !singleSelect && (
-                    <input
-                      type="checkbox"
-                      className={'checkbox'}
-                      readOnly
-                      checked={isSelected}
-                    />
-                )}
-                {this.props.optionValueDecorator(isObject ? option[displayValue] : (option || '').toString(), option)}
+                    <React.Fragment>
+                      <input
+                        type="checkbox"
+                        className={'checkbox'}
+                        readOnly
+                        checked={isSelected}
+                      />
+                      </React.Fragment>
+                  )}
+                </div>
               </li>
             )}
           )}
